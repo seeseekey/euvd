@@ -1,0 +1,21 @@
+[package]
+name = "euvd"
+version = "0.0.1"
+authors = ["seeseekey", "OpenAPI Generator team and contributors"]
+description = "API for querying recent vulnerabilities from the ENISA EUVD database."
+license = "MIT OR Apache-2.0"
+edition = "2021"
+
+homepage = "https://seeseekey.net"
+repository = "https://github.com/seeseekey/euvd.git"
+
+[dependencies]
+serde = { version = "^1.0", features = ["derive"] }
+serde_json = "^1.0"
+serde_repr = "^0.1"
+url = "^2.5"
+reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full", "macros"] }
+reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart", "rustls-tls"] }

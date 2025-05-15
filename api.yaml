@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: EUVD API
+  description: API for querying recent vulnerabilities from the ENISA EUVD database.
+  version: 0.0.1
+  license:
+    name: MIT OR Apache-2.0
+    url: https://opensource.org/licenses/MIT
+
+externalDocs:
+  description: Official EUVD API documentation
+  url: https://euvd.enisa.europa.eu/apidoc
+
+servers:
+  - url: https://euvdservices.enisa.europa.eu
+
+paths:
+  /api/lastvulnerabilities:
+    get:
+      summary: Show latest vulnerabilities
+      operationId: getLastVulnerabilities
+      responses:
+        '200':
+          description: Successful response (max 8 records)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+
+  /api/exploitedvulnerabilities:
+    get:
+      summary: Show latest exploited vulnerabilities
+      operationId: getExploitedVulnerabilities
+      responses:
+        '200':
+          description: Successful response (max 8 records)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+
+  /api/criticalvulnerabilities:
+    get:
+      summary: Show latest critical vulnerabilities
+      operationId: getCriticalVulnerabilities
+      responses:
+        '200':
+          description: Successful response (max 8 records)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+
+  /api/vulnerabilities:
+    get:
+      summary: Query vulnerabilities with flexible filters
+      operationId: queryVulnerabilities
+      parameters:
+        - name: fromScore
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: toScore
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: fromEpss
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: toEpss
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: fromDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: product
+          in: query
+          schema:
+            type: string
+        - name: vendor
+          in: query
+          schema:
+            type: string
+        - name: assigner
+          in: query
+          schema:
+            type: string
+        - name: exploited
+          in: query
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: text
+          in: query
+          schema:
+            type: string
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 100
+      responses:
+        '200':
+          description: Successful response (max 100 records)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vulnerabilities'
+
+  /api/enisaid:
+    get:
+      summary: Show EUVD by ID
+      operationId: getByEnisaId
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with EUVD record
+
+  /api/vulnerability:
+    get:
+      summary: Show vulnerability by ID
+      operationId: getVulnerabilityById
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with vulnerability data
+
+  /api/advisory:
+    get:
+      summary: Show advisory by ID
+      operationId: getAdvisoryById
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with advisory data
+
+components:
+  schemas:
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        datePublished:
+          type: string
+          format: date-time
+        dateUpdated:
+          type: string
+          format: date-time
+        baseScore:
+          type: number
+          format: float
+        baseScoreVersion:
+          type: string
+        baseScoreVector:
+          type: string
+        references:
+          type: string
+        aliases:
+          type: string
+        assigner:
+          type: string
+        epss:
+          type: number
+          format: float
+        exploitedSince:
+          type: string
+          format: date-time
+          description: Date when the vulnerability has been known to be exploited
+        enisaIdProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              product:
+                type: object
+                properties:
+                  name:
+                    type: string
+              product_version:
+                type: string
+        enisaIdVendor:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              vendor:
+                type: object
+                properties:
+                  name:
+                    type: string
+    Vulnerabilities:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        total:
+          type: integer

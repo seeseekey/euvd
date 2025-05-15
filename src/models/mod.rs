@@ -1,0 +1,10 @@
+pub mod vulnerabilities;
+pub use self::vulnerabilities::Vulnerabilities;
+pub mod vulnerability;
+pub use self::vulnerability::Vulnerability;
+pub mod vulnerability_enisa_id_product_inner;
+pub use self::vulnerability_enisa_id_product_inner::VulnerabilityEnisaIdProductInner;
+pub mod vulnerability_enisa_id_product_inner_product;
+pub use self::vulnerability_enisa_id_product_inner_product::VulnerabilityEnisaIdProductInnerProduct;
+pub mod vulnerability_enisa_id_vendor_inner;
+pub use self::vulnerability_enisa_id_vendor_inner::VulnerabilityEnisaIdVendorInner;
