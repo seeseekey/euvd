@@ -1,6 +1,6 @@
-.gitignore
 .travis.yml
 Cargo.toml
+README.md
 docs/Advisory.md
 docs/AdvisoryAdvisoryProductInner.md
 docs/AdvisoryEnisaIdAdvisoriesInner.md
