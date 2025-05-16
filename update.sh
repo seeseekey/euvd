@@ -1,4 +1,4 @@
-#sh
+#!/bin/sh
 
 # Generate client
 openapi-generator generate \
@@ -7,8 +7,7 @@ openapi-generator generate \
   -o . \
   -p packageName=euvd
 
-# Update default_api
-# Modify source code
+# Modify source code (of default_api)
 echo "Modify source code ..."
 python3 modify.py
 

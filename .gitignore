@@ -1,4 +1,5 @@
 .idea/
+.openapi-generator/
 target
 Cargo.lock
 .vscode

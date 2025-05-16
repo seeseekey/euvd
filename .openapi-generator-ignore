@@ -23,4 +23,6 @@
 #!docs/README.md
 
 .gitignore
+.travis.yml
+git_push.sh
 README.md
