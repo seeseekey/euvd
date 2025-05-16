@@ -3,7 +3,7 @@
 from pathlib import Path
 
 # Path to file
-file_path = Path("src/apis/default_api.rs")
+file_path = Path("../src/apis/default_api.rs")
 
 # List of replacement tuples
 replacements = [

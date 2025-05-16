@@ -5,6 +5,8 @@ authors = ["OpenAPI Generator team and contributors"]
 description = "API for querying recent vulnerabilities from the ENISA EUVD database."
 license = "MIT OR Apache-2.0"
 edition = "2021"
+homepage = "https://seeseekey.net"
+repository = "https://github.com/seeseekey/euvd.git"
 
 [dependencies]
 serde = { version = "^1.0", features = ["derive"] }
