@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Update modify script for client generation
 * Update README file
+* Some tweaks on the build process
 
 ## 0.0.1 - 2025-05-15
 
