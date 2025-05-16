@@ -12,18 +12,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct VulnerabilityEnisaIdVendorInner {
+pub struct AdvisoryEnisaIdAdvisoriesInner {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
-    #[serde(rename = "vendor", skip_serializing_if = "Option::is_none")]
-    pub vendor: Option<Box<models::VulnerabilityEnisaIdProductInnerProduct>>,
+    #[serde(rename = "enisaId", skip_serializing_if = "Option::is_none")]
+    pub enisa_id: Option<Box<models::NestedVulnerability>>,
 }
 
-impl VulnerabilityEnisaIdVendorInner {
-    pub fn new() -> VulnerabilityEnisaIdVendorInner {
-        VulnerabilityEnisaIdVendorInner {
+impl AdvisoryEnisaIdAdvisoriesInner {
+    pub fn new() -> AdvisoryEnisaIdAdvisoriesInner {
+        AdvisoryEnisaIdAdvisoriesInner {
             id: None,
-            vendor: None,
+            enisa_id: None,
         }
     }
 }

@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## get_advisory_by_id
 
-> get_advisory_by_id(id)
+> models::Advisory get_advisory_by_id(id)
 Show advisory by ID
 
 ### Parameters
@@ -28,7 +28,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**models::Advisory**](Advisory.md)
 
 ### Authorization
 
@@ -37,14 +37,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## get_by_enisa_id
 
-> get_by_enisa_id(id)
+> models::VulnerabilityWithRelations get_by_enisa_id(id)
 Show EUVD by ID
 
 ### Parameters
@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**models::VulnerabilityWithRelations**](VulnerabilityWithRelations.md)
 
 ### Authorization
 
@@ -65,7 +65,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -147,7 +147,7 @@ No authorization required
 
 ## get_vulnerability_by_id
 
-> get_vulnerability_by_id(id)
+> models::VulnerabilityWithComponents get_vulnerability_by_id(id)
 Show vulnerability by ID
 
 ### Parameters
@@ -159,7 +159,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**models::VulnerabilityWithComponents**](VulnerabilityWithComponents.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

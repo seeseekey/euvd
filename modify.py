@@ -1,9 +1,9 @@
 from pathlib import Path
 
-# Pfad zur Datei
+# Path to file
 file_path = Path("src/apis/default_api.rs")
 
-# Liste von (suche, ersetze)-Tupeln
+# List of replacement tuples
 replacements = [
     (
         'return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Vulnerability&gt;`"))),',
@@ -12,23 +12,27 @@ replacements = [
     (
         'return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Vulnerabilities`"))),',
         'serde_json::from_str(&content).map_err(Error::from),'
+    ),
+    (
+        'return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::VulnerabilityWithRelations`"))),',
+        'serde_json::from_str(&content).map_err(Error::from),'
+    ),
+    (
+        'return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::VulnerabilityWithComponents`"))),',
+        'serde_json::from_str(&content).map_err(Error::from),'
+    ),
+    (
+        'return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Advisory`"))),',
+        'serde_json::from_str(&content).map_err(Error::from),'
     )
 ]
 
 # Read file
-lines = file_path.read_text(encoding="utf-8").splitlines()
+text = file_path.read_text(encoding="utf-8")
 
-# Replace lines
-new_lines = []
-
-for line in lines:
-
-    for old, new in replacements:
-
-        if old in line:
-            line = line.replace(old, new)
-
-    new_lines.append(line)
+# Replace
+for old, new in replacements:
+    text = text.replace(old, new)
 
 # Save file
-file_path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+file_path.write_text(text, encoding="utf-8")

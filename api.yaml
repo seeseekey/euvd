@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: EUVD API
   description: API for querying recent vulnerabilities from the ENISA EUVD database.
-  version: 0.0.1
+  version: 0.1.0
   license:
     name: MIT OR Apache-2.0
     url: https://opensource.org/licenses/MIT
@@ -143,6 +143,10 @@ paths:
       responses:
         '200':
           description: Successful response with EUVD record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityWithRelations'
 
   /api/vulnerability:
     get:
@@ -157,6 +161,10 @@ paths:
       responses:
         '200':
           description: Successful response with vulnerability data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityWithComponents'
 
   /api/advisory:
     get:
@@ -171,6 +179,10 @@ paths:
       responses:
         '200':
           description: Successful response with advisory data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Advisory'
 
 components:
   schemas:
@@ -242,3 +254,187 @@ components:
             $ref: '#/components/schemas/Vulnerability'
         total:
           type: integer
+    VulnerabilityWithRelations:
+      allOf:
+        - $ref: '#/components/schemas/Vulnerability'
+        - type: object
+          properties:
+            enisaIdVulnerability:
+              type: array
+              items:
+                $ref: '#/components/schemas/EnisaIdVulnerabilityEntry'
+            enisaIdAdvisory:
+              type: array
+              items:
+                type: object # Still empty?
+    EnisaIdVulnerabilityEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        vulnerability:
+          $ref: '#/components/schemas/NestedVulnerability'
+    NestedVulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        datePublished:
+          type: string
+          format: date-time
+        dateUpdated:
+          type: string
+          format: date-time
+        status:
+          type: string
+        baseScore:
+          type: number
+          format: float
+        references:
+          type: string
+        enisa_id:
+          type: string
+        assigner:
+          type: string
+        epss:
+          type: number
+          format: float
+        vulnerabilityProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              product:
+                $ref: '#/components/schemas/NestedProduct'
+              product_version:
+                type: string
+        vulnerabilityVendor:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              vendor:
+                $ref: '#/components/schemas/NestedVendor'
+    NestedProduct:
+      type: object
+      properties:
+        name:
+          type: string
+    NestedVendor:
+      type: object
+      properties:
+        name:
+          type: string
+    VulnerabilityWithComponents:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        datePublished:
+          type: string
+          format: date-time
+        dateUpdated:
+          type: string
+          format: date-time
+        status:
+          type: string
+        baseScore:
+          type: number
+          format: float
+        references:
+          type: string
+        enisa_id:
+          type: string
+        assigner:
+          type: string
+        epss:
+          type: number
+          format: float
+        vulnerabilityProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              product:
+                $ref: '#/components/schemas/NestedProduct'
+              product_version:
+                type: string
+        vulnerabilityVendor:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              vendor:
+                $ref: '#/components/schemas/NestedVendor'
+        vulnerabilityAdvisory:
+          type: array
+          items:
+            type: object # Still empty?
+    Advisory:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        summary:
+          type: string
+        datePublished:
+          type: string
+          format: date-time
+        dateUpdated:
+          type: string
+          format: date-time
+        baseScore:
+          type: number
+          format: float
+        references:
+          type: string
+        aliases:
+          type: string
+        source:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        advisoryProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              product:
+                $ref: '#/components/schemas/NestedProduct'
+        enisaIdAdvisories:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              enisaId:
+                $ref: '#/components/schemas/NestedVulnerability'
+        vulnerabilityAdvisory:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              vulnerability:
+                $ref: '#/components/schemas/NestedVulnerability'

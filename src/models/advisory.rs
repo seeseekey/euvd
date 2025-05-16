@@ -12,55 +12,48 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Vulnerability {
+pub struct Advisory {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    #[serde(rename = "summary", skip_serializing_if = "Option::is_none")]
+    pub summary: Option<String>,
     #[serde(rename = "datePublished", skip_serializing_if = "Option::is_none")]
     pub date_published: Option<String>,
     #[serde(rename = "dateUpdated", skip_serializing_if = "Option::is_none")]
     pub date_updated: Option<String>,
     #[serde(rename = "baseScore", skip_serializing_if = "Option::is_none")]
     pub base_score: Option<f32>,
-    #[serde(rename = "baseScoreVersion", skip_serializing_if = "Option::is_none")]
-    pub base_score_version: Option<String>,
-    #[serde(rename = "baseScoreVector", skip_serializing_if = "Option::is_none")]
-    pub base_score_vector: Option<String>,
     #[serde(rename = "references", skip_serializing_if = "Option::is_none")]
     pub references: Option<String>,
     #[serde(rename = "aliases", skip_serializing_if = "Option::is_none")]
     pub aliases: Option<String>,
-    #[serde(rename = "assigner", skip_serializing_if = "Option::is_none")]
-    pub assigner: Option<String>,
-    #[serde(rename = "epss", skip_serializing_if = "Option::is_none")]
-    pub epss: Option<f32>,
-    /// Date when the vulnerability has been known to be exploited
-    #[serde(rename = "exploitedSince", skip_serializing_if = "Option::is_none")]
-    pub exploited_since: Option<String>,
-    #[serde(rename = "enisaIdProduct", skip_serializing_if = "Option::is_none")]
-    pub enisa_id_product: Option<Vec<models::VulnerabilityEnisaIdProductInner>>,
-    #[serde(rename = "enisaIdVendor", skip_serializing_if = "Option::is_none")]
-    pub enisa_id_vendor: Option<Vec<models::VulnerabilityEnisaIdVendorInner>>,
+    #[serde(rename = "source", skip_serializing_if = "Option::is_none")]
+    pub source: Option<Box<models::AdvisorySource>>,
+    #[serde(rename = "advisoryProduct", skip_serializing_if = "Option::is_none")]
+    pub advisory_product: Option<Vec<models::AdvisoryAdvisoryProductInner>>,
+    #[serde(rename = "enisaIdAdvisories", skip_serializing_if = "Option::is_none")]
+    pub enisa_id_advisories: Option<Vec<models::AdvisoryEnisaIdAdvisoriesInner>>,
+    #[serde(rename = "vulnerabilityAdvisory", skip_serializing_if = "Option::is_none")]
+    pub vulnerability_advisory: Option<Vec<models::AdvisoryVulnerabilityAdvisoryInner>>,
 }
 
-impl Vulnerability {
-    pub fn new() -> Vulnerability {
-        Vulnerability {
+impl Advisory {
+    pub fn new() -> Advisory {
+        Advisory {
             id: None,
             description: None,
+            summary: None,
             date_published: None,
             date_updated: None,
             base_score: None,
-            base_score_version: None,
-            base_score_vector: None,
             references: None,
             aliases: None,
-            assigner: None,
-            epss: None,
-            exploited_since: None,
-            enisa_id_product: None,
-            enisa_id_vendor: None,
+            source: None,
+            advisory_product: None,
+            enisa_id_advisories: None,
+            vulnerability_advisory: None,
         }
     }
 }

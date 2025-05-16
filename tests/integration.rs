@@ -100,3 +100,54 @@ async fn query_vulnerabilities() {
     // Assert
     assert!(result.is_ok(), "API call failed: {:?}", result.err());
 }
+
+#[tokio::test()]
+async fn get_by_enisa_id() {
+
+    // Preparation
+    let config = Configuration::default();
+    let result = default_api::get_by_enisa_id(&config, "EUVD-2024-45012").await;
+
+    // Print result if successful
+    if let Ok(vuln) = &result {
+        println!("✅ Response received:");
+        println!("• ID: {:?}, Description: {:?}", vuln.id, vuln.description);
+    }
+
+    // Asserts
+    assert!(result.is_ok(), "API call failed: {:?}", result.err());
+}
+
+#[tokio::test()]
+async fn get_vulnerability_by_id() {
+
+    // Preparation
+    let config = Configuration::default();
+    let result = default_api::get_vulnerability_by_id(&config, "CVE-2024-0864").await;
+
+    // Print result if successful
+    if let Ok(vuln) = &result {
+        println!("✅ Response received:");
+        println!("• ID: {:?}, Description: {:?}", vuln.id, vuln.description);
+    }
+
+    // Asserts
+    assert!(result.is_ok(), "API call failed: {:?}", result.err());
+}
+
+#[tokio::test()]
+async fn get_advisory_by_id() {
+
+    // Preparation
+    let config = Configuration::default();
+    let result = default_api::get_advisory_by_id(&config, "cisco-sa-ata19x-multi-RDTEqRsy").await;
+
+    // Print result if successful
+    if let Ok(vuln) = &result {
+        println!("✅ Response received:");
+        println!("• ID: {:?}, Description: {:?}", vuln.id, vuln.description);
+    }
+
+    // Asserts
+    assert!(result.is_ok(), "API call failed: {:?}", result.err());
+}
