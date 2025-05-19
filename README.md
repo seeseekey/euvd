@@ -1,4 +1,4 @@
-# Rust API client for euvd
+# Rust API client for the European Vulnerability Database (EUVD)
 
 This crate provides an async client for the [ENISA EUVD](https://euvd.enisa.europa.eu/homepage), 
 a database of known and exploited software vulnerabilities maintained by the European Union Agency 
