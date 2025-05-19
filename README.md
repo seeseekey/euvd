@@ -120,7 +120,7 @@ Licensed under either of
 
 ## Author
 
-* [seeseekey](https://seeseekey.net) 
+* [seeseekey](https://seeseekey.net) ([GitHub](https://github.com/seeseekey))
 
 ## Resources
 
