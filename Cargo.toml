@@ -1,6 +1,6 @@
 [package]
 name = "euvd"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["OpenAPI Generator team and contributors"]
 description = "API for querying recent vulnerabilities from the ENISA EUVD database."
 license = "MIT OR Apache-2.0"

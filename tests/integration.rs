@@ -110,7 +110,7 @@ async fn get_by_enisa_id() {
 
     // Print result if successful
     if let Ok(vuln) = &result {
-        println!("✅ Response received:");
+        println!("Response received:");
         println!("• ID: {:?}, Description: {:?}", vuln.id, vuln.description);
     }
 
@@ -127,7 +127,7 @@ async fn get_vulnerability_by_id() {
 
     // Print result if successful
     if let Ok(vuln) = &result {
-        println!("✅ Response received:");
+        println!("Response received:");
         println!("• ID: {:?}, Description: {:?}", vuln.id, vuln.description);
     }
 
@@ -144,7 +144,7 @@ async fn get_advisory_by_id() {
 
     // Print result if successful
     if let Ok(vuln) = &result {
-        println!("✅ Response received:");
+        println!("Response received:");
         println!("• ID: {:?}, Description: {:?}", vuln.id, vuln.description);
     }
 
