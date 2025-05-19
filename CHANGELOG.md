@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+* Improve generation script
 * Rename license file
 * Rework and tweak OpenAPI description
 * Tweak tests

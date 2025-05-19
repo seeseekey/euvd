@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Delete docs and src folder
+rm -rf ../docs ../src
+
 # Generate client
 openapi-generator generate \
   -i api.yaml \
