@@ -41,7 +41,7 @@ euvd = { path = "./euvd" }
 
 ## Example
 
-Examples can be found in tests/integration.rs:
+Examples can be found in [tests/integration.rs](tests/integration.rs):
 
 ```
 use euvd::apis::configuration::Configuration;
@@ -126,5 +126,6 @@ Licensed under either of
 
 * https://github.com/seeseekey/euvd
 * https://github.com/seeseekey/euvd/blob/main/CHANGELOG.md
+* https://github.com/seeseekey/euvd/blob/main/api/api.yaml
 * https://euvd.enisa.europa.eu/homepage
 * https://euvd.enisa.europa.eu/apidoc

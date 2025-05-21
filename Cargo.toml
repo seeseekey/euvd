@@ -2,7 +2,7 @@
 name = "euvd"
 version = "0.2.0"
 authors = ["OpenAPI Generator team and contributors"]
-description = "API for querying recent vulnerabilities from the ENISA EUVD database."
+description = "API for querying recent vulnerabilities from the ENISA EUVD database"
 license = "MIT OR Apache-2.0"
 edition = "2021"
 homepage = "https://seeseekey.net"
